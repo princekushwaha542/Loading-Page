@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Loading Screen</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #111;
+            font-family: Arial, sans-serif;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-box {
+            width: 400px;
+            text-align: center;
+        }
+
+
+        .bar-outline {
+            width: 100%;
+            height: 20px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            border-radius:10px;
+            overflow: hidden;
+
+        }
+
+      
+        .loading-text {
+            margin-bottom: 40px;
+            font-size: 18px;
+            animation: blink 1s infinite;
+        }
+        .bar-fill{
+            width:0% ;
+            height: 100%;
+            background-color: rgb(255, 255, 255);
+        }
+        #loadResult{
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loading-box">
+        <div class="loading-text"><h4>Loading...</h4></div>
+
+
+        <div class="bar-outline">
+            <div class="bar-fill"></div>
+        </div>
+        <div id="loadResult">
+            <h3>0%</h3>
+        </div>
+
+    </div>
+
+    <script>
+        let count=0;
+        let loaded=document.querySelector("h4");
+        let loadResult=document.getElementById("loadResult");
+        let barFill=document.querySelector(".bar-fill");
+        let si=setInterval(()=>{
+            if(count<=99){
+                count++;
+                barFill.style.width=count+"%";
+            loadResult.textContent=`${count}%`;
+            }
+            else{
+            loaded.textContent="Downloded.";
+            clearInterval(si);
+            }
+        },30);
+
+        
+               
+            
+    </script>
+
+</body>
+</html>
