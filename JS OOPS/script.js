@@ -28,3 +28,20 @@ console.log(pencil1);
 let pencil2 = new MakePencil("doms","red","doms","100gm","45","10");
 console.log(pencil2);
 pencil1.use();
+
+
+
+// log Larg value and small value or Array
+
+let data = [10, 4, 1, 99, 34];
+let larg = data[0];
+let small =data[0];
+for(let i=0;i<data.length-1;i++){
+  if(data[i]>larg){
+    larg = data[i];
+  }
+  if(data[i]<small){
+    small = data[i];
+  }
+}
+console.log(larg, small);
