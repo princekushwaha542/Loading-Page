@@ -60,3 +60,34 @@ for (let i = 0; i < data.length - 1; i++) {
 
 console.log(data); 
 
+//class and constructor
+
+class User{
+  constructor(name,address,username,email){
+    this.name = name;
+    this.address = address;
+    this.username =username;
+    this.email = email;
+  }
+  write(text){
+    let h1 = document.createElement("h1");
+    h1.innerText = `${this.name} : ${text}`;
+    document.body.appendChild(h1);
+  }
+}
+
+
+class Admin extends User{
+  constructor(name,address,username,email){
+    super(name,address,username,email);
+    this.role = "Admin";
+  }
+  remove(){
+    document.querySelectorAll("h1").forEach((elem)=>{
+        elem.remove();
+    });
+  };
+}
+
+let u1 =new Admin("Prince","Rewa","theprince.exe","hey@example.com");
+let u2 =new Admin("shyam","Rewa","theshyam.exe","hey@example.com");
