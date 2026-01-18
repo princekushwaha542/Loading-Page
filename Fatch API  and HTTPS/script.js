@@ -4,7 +4,7 @@ fetch("https://randomuser.me/api/")
     return rowdata.json();
 })
 .then((data) =>{
-    console.log(data);
+    console.log(data.info.seed); // data -> info -> seed
 })
 .catch((err) =>{
     console.log(err);
