@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    color: white;
+    position: relative;
+    width: 360px;
+    height: 260px;
+}
+
+h1 {
+    font-size: 22px;
+    min-height: 50px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.yes {
+    background: #ff4d6d;
+    color: white;
+}
+
+.no {
+    background: white;
+    color: #ff4d6d;
+    position: absolute;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-600px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" src="jogi.mp3" loop></audio>
+
+<div class="container">
+    <h1 id="typing"></h1>
+    <p>Will you stay with me forever? 💌</p>
+    <button class="yes" onclick="showLove()">Yes ❤️</button>
+    <button class="no" id="noBtn">No 😒</button>
+</div>
+
+<script>
+
+// Typing Effect
+const text = "Will you stay with me… today, tomorrow, forever? ❤️";
+let index = 0;
+
+function typeEffect() {
+    if (index < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 60);
+    }
+}
+typeEffect();
+
+// Move No Button inside container
+const noBtn = document.getElementById("noBtn");
+const container = document.querySelector(".container");
+
+noBtn.addEventListener("mouseover", function() {
+    const containerRect = container.getBoundingClientRect();
+    const btnRect = noBtn.getBoundingClientRect();
+
+    const maxX = containerRect.width - btnRect.width;
+    const maxY = containerRect.height - btnRect.height;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+});
+
+// Yes Button Surprise
+function showLove() {
+
+    const music = document.getElementById("bgMusic");
+    music.volume = 0;
+    music.currentTime = 5;
+    music.play();
+    // Smooth fade-in
+    let vol = 0;
+    const fade = setInterval(() => {
+        if (vol < 1) {
+            vol += 0.05;
+            music.volume = vol;
+        } else {
+            clearInterval(fade);
+        }
+    }, 200);
+
+    document.querySelector(".container").innerHTML = `
+        <h1>💖 You just made my heart smile! 💖</h1>
+        <p>I promise unlimited chocolates & happiness 😘</p>
+    `;
+
+    setInterval(createHeart, 300);
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 4000);
+}
+
+</script>
+
+</body>
+</html>
