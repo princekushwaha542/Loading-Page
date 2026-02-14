@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Memory Match Game</title>
+
+<style>
+body{
+  font-family: Arial;
+  text-align:center;
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  color:white;
+}
+
+h1{
+  margin-top:20px;
+}
+
+.game{
+  width:420px;
+  margin:30px auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.card{
+  height:90px;
+  background:#222;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:30px;
+  cursor:pointer;
+  border-radius:10px;
+  transition:transform 0.4s;
+}
+
+.card.flip{
+  background:white;
+  color:black;
+  transform:rotateY(180deg);
+}
+
+button{
+  padding:10px 20px;
+  font-size:16px;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🧠 Memory Match Game</h1>
+<h3 id="status">Moves: 0</h3>
+
+<div class="game" id="game"></div>
+
+<button onclick="restartGame()">Restart</button>
+
+<script>
+const emojis = ["🍎","🍌","🍒","🍇","🍎","🍌","🍒","🍇"];
+let firstCard = null;
+let secondCard = null;
+let lockBoard = false;
+let moves = 0;
+
+const game = document.getElementById("game");
+const statusText = document.getElementById("status");
+
+function shuffle(array){
+  return array.sort(()=>Math.random()-0.5);
+}
+
+function createBoard(){
+  game.innerHTML="";
+  shuffle(emojis).forEach(emoji=>{
+    const card=document.createElement("div");
+    card.classList.add("card");
+    card.dataset.value=emoji;
+    card.innerText="";
+    card.addEventListener("click",flipCard);
+    game.appendChild(card);
+  });
+}
+
+function flipCard(){
+  if(lockBoard || this===firstCard) return;
+
+  this.classList.add("flip");
+  this.innerText=this.dataset.value;
+
+  if(!firstCard){
+    firstCard=this;
+    return;
+  }
+
+  secondCard=this;
+  moves++;
+  statusText.innerText="Moves: "+moves;
+
+  checkMatch();
+}
+
+function checkMatch(){
+  if(firstCard.dataset.value===secondCard.dataset.value){
+    resetTurn();
+    checkWin();
+  }else{
+    lockBoard=true;
+    setTimeout(()=>{
+      firstCard.classList.remove("flip");
+      secondCard.classList.remove("flip");
+      firstCard.innerText="";
+      secondCard.innerText="";
+      resetTurn();
+    },800);
+  }
+}
+
+function resetTurn(){
+  [firstCard,secondCard]=[null,null];
+  lockBoard=false;
+}
+
+function checkWin(){
+  const flipped=document.querySelectorAll(".flip");
+  if(flipped.length===8){
+    statusText.innerText="🎉 You Won in "+moves+" moves!";
+  }
+}
+
+function restartGame(){
+  moves=0;
+  statusText.innerText="Moves: 0";
+  resetTurn();
+  createBoard();
+}
+
+createBoard();
+</script>
+
+</body>
+</html>
