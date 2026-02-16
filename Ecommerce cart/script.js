@@ -17,6 +17,11 @@ const products = [
   {id:7,name:"Sofa",price:15000,category:"Home",img:"https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400"},
   {id:8,name:"Chair",price:3500,category:"Home",img:"https://images.unsplash.com/photo-1503602642458-232111445657?w=400"},
   {id:9,name:"Lamp",price:1200,category:"Home",img:"https://images.unsplash.com/photo-1507477338202-487281e6c27e?w=400"},
+  {id:10,name:"Table",price:2000,category:"Furniture",img:"https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400"},
+  {id:11,name:"tv",price:1200,category:"Application",img:"https://images.unsplash.com/photo-1507477338202-487281e6c27e?w=400"},
+  {id:12,name:"Desk",price:3000,category:"Furniture",img:"https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400"},
+  {id:13,name:"Bookshelf",price:2500,category:"Furniture",img:"https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400"},
+  
 ];
 
 /* SHOW CATEGORIES */
