@@ -1,0 +1,41 @@
+body{
+  background:black;
+  color:white;
+  text-align:center;
+  font-family:Arial;
+}
+
+h1{
+  margin-top:20px;
+  letter-spacing:4px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,150px);
+  gap:20px;
+  justify-content:center;
+  margin:40px;
+}
+
+.box{
+  width:150px;
+  height:150px;
+  background:#111;
+  border-radius:20px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.box.active{
+  background:#00f2ff;
+  box-shadow:0 0 30px #00f2ff;
+}
+
+button{
+  padding:10px 20px;
+  border:none;
+  background:#00f2ff;
+  cursor:pointer;
+  border-radius:20px;
+}
