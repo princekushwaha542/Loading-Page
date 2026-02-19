@@ -1,0 +1,102 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
+}
+
+body{
+  overflow:hidden;
+  background:#3c3c3c;
+}
+
+.game{
+  width:400px;
+  height:100vh;
+  margin:auto;
+  position:relative;
+  overflow:hidden;
+  border-left:5px solid white;
+  border-right:5px solid white;
+  background:#000000;
+}
+
+/* ROAD LINES */
+.road::before{
+  content:"";
+  position:absolute;
+  width:10px;
+  height:100%;
+  left:50%;
+  transform:translateX(-50%);
+  background:repeating-linear-gradient(
+    to bottom,
+    white 0px,
+    white 40px,
+    transparent 40px,
+    transparent 80px
+  );
+  animation:moveRoad 0.5s linear infinite;
+}
+
+@keyframes moveRoad{
+  from{background-position-y:0;}
+  to{background-position-y:80px;}
+}
+
+/* CARS */
+.car{
+  width:50px;
+  height:80px;
+  position:absolute;
+  border-radius:10px;
+  /* display: none; */
+}
+
+.player{
+  bottom:20px;
+  left:175px;
+  background:linear-gradient(to bottom,#c4d5d5,#253235);
+}
+.player {
+  width: 60px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+}
+
+.enemy{
+  background:linear-gradient(to bottom,#ff416c,#ff4b2b);
+}
+
+.ui{
+  position:absolute;
+  top:20px;
+  left:20px;
+  color:white;
+}
+
+button{
+  margin-left: 120px;
+  margin-top: 40vh;
+  /* padding:8px 15px; */
+  border:none;
+  background:rgb(26, 201, 201);
+  cursor:pointer;
+  font-weight:bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 120px;
+  z-index: 999;
+  border-radius: 10px;
+}
+.cover{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+}
