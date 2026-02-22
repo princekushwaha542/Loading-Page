@@ -6,6 +6,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let particles = [];
+let stars = [];
+let theme = "colorful";
 
 class Particle {
   constructor(x, y) {
@@ -15,7 +17,9 @@ class Particle {
     this.speedX = (Math.random() - 0.5) * 8;
     this.speedY = (Math.random() - 0.5) * 8;
     this.gravity = 0.2;
-    this.color = `hsl(${Math.random() * 360},100%,50%)`;
+    this.color = theme === "colorful"
+      ? `hsl(${Math.random() * 360},100%,50%)`
+      : "#00f2ff";
   }
 
   update() {
@@ -23,13 +27,25 @@ class Particle {
     this.x += this.speedX;
     this.y += this.speedY;
 
-    // Bounce effect
+    // Bounce bottom
     if (this.y + this.size > canvas.height) {
       this.y = canvas.height - this.size;
       this.speedY *= -0.6;
     }
 
-    this.size *= 0.96; // shrink
+    // Collision with other particles
+    particles.forEach(p => {
+      const dx = this.x - p.x;
+      const dy = this.y - p.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < this.size + p.size) {
+        this.speedX *= -1;
+        this.speedY *= -1;
+      }
+    });
+
+    this.size *= 0.97;
   }
 
   draw() {
@@ -40,14 +56,53 @@ class Particle {
   }
 }
 
+class Star {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2;
+    this.speed = Math.random() * 0.5;
+  }
+
+  update() {
+    this.y += this.speed;
+    if (this.y > canvas.height) {
+      this.y = 0;
+      this.x = Math.random() * canvas.width;
+    }
+  }
+
+  draw() {
+    ctx.fillStyle = "white";
+    ctx.fillRect(this.x, this.y, this.size, this.size);
+  }
+}
+
 function createExplosion(x, y) {
   for (let i = 0; i < 80; i++) {
     particles.push(new Particle(x, y));
+  }
+
+  // Button shake animation
+  button.style.transform = "scale(1.2)";
+  setTimeout(() => {
+    button.style.transform = "scale(1)";
+  }, 200);
+}
+
+function initStars() {
+  for (let i = 0; i < 100; i++) {
+    stars.push(new Star());
   }
 }
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  stars.forEach(star => {
+    star.update();
+    star.draw();
+  });
 
   particles.forEach((particle, index) => {
     particle.update();
@@ -68,4 +123,17 @@ button.addEventListener("click", (e) => {
   createExplosion(x, y);
 });
 
+// Mouse trail effect
+canvas.addEventListener("mousemove", (e) => {
+  for (let i = 0; i < 2; i++) {
+    particles.push(new Particle(e.clientX, e.clientY));
+  }
+});
+
+// Theme toggle with double click
+button.addEventListener("dblclick", () => {
+  theme = theme === "colorful" ? "neon" : "colorful";
+});
+
+initStars();
 animate();
