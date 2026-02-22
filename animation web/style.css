@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+button {
+  position: absolute;
+  padding: 15px 40px;
+  font-size: 18px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  background: #ff416c;
+  color: white;
+  box-shadow: 0 0 20px #ff416c;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
