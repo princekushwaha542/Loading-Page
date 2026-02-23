@@ -1,0 +1,310 @@
+/* ===== GLOBAL RESET ===== */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#0f0f0f;
+color:#fff;
+overflow-x:hidden;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+/* ===== NAVBAR ===== */
+.header{
+position:fixed;
+width:100%;
+top:0;
+z-index:1000;
+backdrop-filter:blur(15px);
+background:rgba(0,0,0,0.5);
+}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 0;
+}
+
+.logo{
+font-size:24px;
+font-weight:700;
+color:#00f2ff;
+}
+
+.nav-links{
+display:flex;
+list-style:none;
+}
+
+.nav-links li{
+margin:0 15px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#fff;
+position:relative;
+transition:0.3s;
+}
+
+.nav-links a::after{
+content:"";
+position:absolute;
+width:0%;
+height:2px;
+background:#00f2ff;
+left:0;
+bottom:-5px;
+transition:0.3s;
+}
+
+.nav-links a:hover::after{
+width:100%;
+}
+
+.social-top a{
+color:#fff;
+margin-left:15px;
+transition:0.3s;
+}
+
+.social-top a:hover{
+color:#00f2ff;
+transform:translateY(-3px);
+}
+
+/* ===== HERO ===== */
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+padding-top:100px;
+}
+
+.hero span{
+color:#00f2ff;
+}
+
+.hero h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.typing{
+color:#00f2ff;
+font-size:22px;
+height:30px;
+}
+
+.hero p{
+margin:20px auto;
+max-width:600px;
+line-height:1.6;
+}
+
+.hero-buttons{
+margin-top:20px;
+}
+
+.btn{
+display:inline-block;
+padding:12px 28px;
+border-radius:30px;
+text-decoration:none;
+font-weight:600;
+margin:5px;
+transition:0.3s;
+}
+
+.primary{
+background:#00f2ff;
+color:#000;
+}
+
+.primary:hover{
+transform:scale(1.1);
+}
+
+.secondary{
+border:2px solid #00f2ff;
+color:#00f2ff;
+}
+
+.secondary:hover{
+background:#00f2ff;
+color:#000;
+}
+
+/* ===== SECTION ===== */
+.section{
+padding:100px 0;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:50px;
+font-size:28px;
+}
+
+.dark{
+background:#151515;
+}
+
+/* ===== SKILLS ===== */
+.skill{
+margin-bottom:25px;
+}
+
+.bar{
+background:#333;
+height:8px;
+border-radius:10px;
+margin-top:8px;
+overflow:hidden;
+}
+
+.fill{
+height:8px;
+background:#00f2ff;
+width:0;
+transition:1.5s ease;
+}
+
+/* ===== PROJECTS ===== */
+.project-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.project-card{
+background:#1f1f1f;
+padding:25px;
+border-radius:15px;
+transition:0.4s;
+transform-style:preserve-3d;
+}
+
+.project-card:hover{
+transform:rotateY(10deg) rotateX(5deg) scale(1.05);
+box-shadow:0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* ===== CONTACT ===== */
+.contact-form{
+max-width:500px;
+margin:auto;
+display:flex;
+flex-direction:column;
+}
+
+.contact-form input,
+.contact-form textarea{
+margin-bottom:15px;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#222;
+color:#fff;
+}
+
+.contact-form button{
+border:none;
+cursor:pointer;
+}
+
+/* ===== REVEAL ANIMATION ===== */
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:1s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+.nav-links{
+display:none;
+}
+.hero h1{
+font-size:28px;
+}
+}
+/* ===== THEME BUTTON ===== */
+.theme-btn{
+background:none;
+border:none;
+color:#fff;
+font-size:18px;
+margin-left:15px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.theme-btn:hover{
+color:#00f2ff;
+transform:rotate(20deg);
+}
+
+/* ===== LIGHT MODE ===== */
+body.light{
+background:#f4f4f4;
+color:#111;
+}
+
+body.light .header{
+background:rgba(255,255,255,0.7);
+}
+
+body.light .nav-links a{
+color:#111;
+}
+
+body.light .social-top a{
+color:#111;
+}
+
+body.light .hero{
+background:linear-gradient(135deg,#ffffff,#e3f2fd,#bbdefb);
+color:#111;
+}
+
+body.light .project-card{
+background:#ffffff;
+color:#111;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+body.light .dark{
+background:#eaeaea;
+}
+
+body.light .bar{
+background:#ccc;
+}
+
+body.light .contact-form input,
+body.light .contact-form textarea{
+background:#fff;
+color:#111;
+border:1px solid #ccc;
+}
