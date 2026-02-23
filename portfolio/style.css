@@ -315,3 +315,57 @@ background:#fff;
 color:#111;
 border:1px solid #ccc;
 }
+/* ===== FLOATING SKILL ICONS BACKGROUND ===== */
+
+#skills {
+position: relative;
+overflow: hidden;
+}
+
+.floating-icons {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+gap: 80px;
+z-index: 0;
+}
+
+.floating-icons i {
+font-size: 60px;
+color: #00f2ff;
+opacity: 0.5;
+animation: floatRotate 20s linear infinite;
+}
+
+.skill-box {
+position: relative;
+z-index: 2;
+}
+
+/* Different speed for each icon */
+.floating-icons i:nth-child(odd){
+animation-duration: 25s;
+}
+
+.floating-icons i:nth-child(even){
+animation-duration: 18s;
+}
+
+@keyframes floatRotate {
+0% {
+transform: rotate(0deg) translateY(0px);
+}
+50% {
+transform: rotate(180deg) translateY(-30px);
+}
+100% {
+transform: rotate(360deg) translateY(0px);
+}
+}
