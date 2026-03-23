@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My School</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>My School</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Welcome to Our School</h2>
+    <p>Building a better future</p>
+    <button onclick="showMessage()">Click Me</button>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Our school provides quality education and focuses on overall development.</p>
+  </section>
+
+  <section id="courses">
+    <h2>Courses</h2>
+    <div class="course">Science</div>
+    <div class="course">Commerce</div>
+    <div class="course">Arts</div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form onsubmit="return handleSubmit(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2026 My School</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
