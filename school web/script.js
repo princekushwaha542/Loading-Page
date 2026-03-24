@@ -1,5 +1,5 @@
 function showMessage() {
-  alert("Welcome to our School!");
+  alert("Welcome to Sheriyansh Coding School!");
 }
 
 function handleSubmit(e) {
